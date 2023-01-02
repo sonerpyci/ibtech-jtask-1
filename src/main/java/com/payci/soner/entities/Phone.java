@@ -11,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.payci.soner.entities.base.BaseEntity;
+
 @Entity
 @Table(name = "Phones")
-public class Phone implements Serializable {
+public class Phone extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public Phone() {}
@@ -33,9 +35,6 @@ public class Phone implements Serializable {
 		this.customer = customer;
 	}
 	
-	@Id  @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
-
 	@Column(name = "country_code")
 	private String countryCode;
 
@@ -44,14 +43,6 @@ public class Phone implements Serializable {
 	@ManyToOne
     @JoinColumn(name="customer_id")
     private Customer customer;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getCountryCode() {
 		return countryCode;

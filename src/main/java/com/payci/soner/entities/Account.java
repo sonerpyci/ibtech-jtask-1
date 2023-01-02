@@ -3,16 +3,15 @@ package com.payci.soner.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.payci.soner.entities.base.BaseEntity;
+
 @Entity
 @Table(name = "Accounts")
-public class Account implements Serializable {
+public class Account extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public Account() {}
@@ -31,9 +30,6 @@ public class Account implements Serializable {
 		this.customer = customer;
 	}
 
-	@Id  @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
-
 	private double balance;
 
 	@ManyToOne
@@ -41,12 +37,6 @@ public class Account implements Serializable {
 	
     private Customer customer;
 
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
     public double getBalance() {
         return balance;
     }

@@ -16,10 +16,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.payci.soner.entities.base.BaseEntity;
+
 
 @Entity
 @Table(name = "Customers")
-public class Customer implements Serializable {
+public class Customer extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,9 +47,6 @@ public class Customer implements Serializable {
 		this.phones = phones;
 	}
 
-	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
-
 	private String name;
 
 	@Column(name = "last_name")
@@ -64,14 +63,6 @@ public class Customer implements Serializable {
 	@OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL})
 	@Cascade(org.hibernate.annotations.CascadeType.REPLICATE)
 	private List<Phone> phones = new ArrayList<>();
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
